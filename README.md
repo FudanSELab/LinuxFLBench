@@ -11,11 +11,15 @@ LINUXFLBENCH is a new benchmark of 250 Fault Localization tasks derived from rea
   - `id`: Bug ID
   - `title`: Bug title
   - `description`: Detailed bug description
+  - `Kernel Version`: The version of the Linux kernel in which the bug occurred (e.g., 5.6.7).
   - `patch`: Patch content for the fix
   - `paths`: Source file paths involved (i.e., localization target files)
   - `methods`: Function names involved
   - Additional metadata: kernel version, component, hardware, etc.
-- The dataset covers various kernel subsystems and is suitable for evaluating LLM/agent-based localization and repair.
+- The dataset covers various kernel versions and is suitable for evaluating LLM/agent-based fault localization in large and complex systems(i.e., the Linux kernel).
+- The source code for different Linux kernel versions can be downloaded from [here](https://drive.google.com/uc?export=download&id=18FaxpKbbs8f3Ys79fadRkdElUkmeoWkm).
+
+
 
 ## Methods and Code Structure
 
@@ -24,9 +28,11 @@ The main code is under the `code/` directory, organized as follows:
 - `scale/`: Candidate file expansion and reasoning
   - `scaling_candidates_with_dir.py`: Directory-based candidate expansion
   - `scaling_candidates_with_guess.py`: LLM-based candidate expansion
-- `merge/`: Multi-model/multi-method result fusion and reranking
+- `merge/`: Multi-method result fusion and reranking
   - `merge.py`: Fusion of multiple ranking results
   - `rerank.py`: LLM-based candidate reranking
+- `method_fl/`: Method-level fault localization based on the predicted code files
+  - `method_localize.py`: Method-level fault localization script
 - `eval/`: Evaluation and metrics
   - `evaluate.py`: Main evaluation script
   - `evaluation_metrics.py`: Common metrics such as Recall@K, MRR
@@ -40,6 +46,10 @@ The main code is under the `code/` directory, organized as follows:
    Use scripts in `merge/` to fuse multiple candidate ranking results, and rerank with LLM.
 3. **Evaluation**  
    Use scripts in `eval/` to evaluate the final results with metrics such as Recall@K and MRR.
+
+### Results
+All experimental results are located in the `result/` directory and can be used for reproduction.
+
 
 ## Requirements
 
