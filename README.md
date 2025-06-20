@@ -31,12 +31,17 @@ The main code is under the `code/` directory, organized as follows:
 - `merge/`: Multi-method result fusion and reranking
   - `merge.py`: Fusion of multiple ranking results
   - `rerank.py`: LLM-based candidate reranking
+- `mail/`：Mail-related scripts
+  - `mails_retrieval.py`：Retrieves relevant emails from the mail dataset based on queries
+  - `search_mails_bm25s.py`：BM25-based Mail Search Utils
 - `method_fl/`: Method-level fault localization based on the predicted code files
   - `method_localize.py`: Method-level fault localization script
 - `eval/`: Evaluation and metrics
   - `evaluate.py`: Main evaluation script
   - `evaluation_metrics.py`: Common metrics such as Recall@K, MRR
 - `utils.py`, `file_parser.py`: General utility functions
+- The mail data for retrieval can be downloaded from [here](https://drive.google.com/uc?export=download&id=1Hdhu4WTVMxWk3ixJ4w2Wsm9ATHdQrxuN).
+
 
 ### Typical Workflow
 
