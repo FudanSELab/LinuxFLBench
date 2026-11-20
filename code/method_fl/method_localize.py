@@ -9,7 +9,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import utils
 import file_parser
 
-def build_prompt_function_localize(result, ):
+def build_prompt_function_localize(result, kernel_path):
     bug_information = (
         "Title: " + result['title'] + "\n" +
         "Description: " + result['description'] + "\n" +
@@ -73,7 +73,7 @@ def process_func_predict(func_predict):
     func_predict = [func.strip() for func in func_predict if func.strip()]
     return func_predict
 
-def function_localize(data_path, save_path, gpt_base_url, api_key):
+def function_localize(data_path, save_path, gpt_base_url, api_key, kernel_path):
     input_tokens = 0
     output_tokens = 0
     total_tokens = 0
@@ -90,7 +90,7 @@ def function_localize(data_path, save_path, gpt_base_url, api_key):
             one_total_tokens = 0
 
             print(f"\rProcessing {i+1}/{len(results)} ({(i+1)/len(results)*100:.1f}%)", end="")
-            content = build_prompt_function_localize(result=result)
+            content = build_prompt_function_localize(result=result, kernel_path=kernel_path)
             messages = [
                 {"role": "system",
                  "content": "You are a linux kernel maintainer, skilled in analyzing the root cause of "
